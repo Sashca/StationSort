@@ -16,7 +16,6 @@ for station in data:
 print(" ")
 
 data.sort(key=lambda k: k['tc_arrivetime'])
-lines = []
 for station in data:
     line = station['td_marshtitle'] + " " + station['td_dirtitle'] + " " + station['tc_arrivetime']
     print(line)
