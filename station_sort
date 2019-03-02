@@ -1,0 +1,22 @@
+import json
+import urllib.request
+
+data = ""
+try:
+    response = urllib.request.urlopen("http://194.213.117.99:4813/getTabloData.php?_user_=000024&_password_=000024&fmt=json")
+    json_station = response.read().decode('utf-8')
+    data = json.loads(json_station)
+except urllib.error.HTTPError as e:
+    print(e.code)
+
+for station in data:
+    line = station['td_marshtitle'] + " " + station['td_dirtitle'] + " " + station['tc_arrivetime']
+    print(line)
+
+print(" ")
+
+data.sort(key=lambda k: k['tc_arrivetime'])
+lines = []
+for station in data:
+    line = station['td_marshtitle'] + " " + station['td_dirtitle'] + " " + station['tc_arrivetime']
+    print(line)
